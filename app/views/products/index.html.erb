@@ -1,0 +1,12 @@
+<h1 class="appCustomHeader" align="center">Welcome to our online shop!</h1>
+<div>
+	<div style="padding-top: 15%;" class="appPlaintext">We hope that you'll find everything you need in here.</div>
+	<div style="padding-top: 10%;">
+		<div style="display: inline;">
+			<%= link_to "<button class='customBtn'>Go to product catalog</button>".html_safe, goods_path, method: :get %>
+		</div>
+		<div style="display: inline;">
+			<%= link_to "<button class='customBtn'>Go to shopping basket</button>".html_safe, cart_path(:current_cart), method: :get %>
+		</div>
+	</div>
+</div>

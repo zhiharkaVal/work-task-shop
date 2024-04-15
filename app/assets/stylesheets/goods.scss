@@ -1,0 +1,151 @@
+//Styles related to the Goods controller here.
+/*
+*= require_tree
+*= require jquery-ui
+*= require_self
+*/
+.customBorder {
+	border: 1.5pt solid #05473d;
+    border-radius: 3pt;
+}
+
+.customBtn {
+	border-radius: 4pt;
+    padding: 5pt;
+    background: #05473d;
+	font-family: Lato;
+	font-size: 12pt;
+	font-weight: normal;
+	color: white;
+}
+
+.search {
+	border-radius: 4pt;
+    padding: 3pt;
+    background: #05473d;
+	font-family: Lato;
+	font-size: 10pt;
+	font-weight: normal;
+	color: white;
+	cursor: pointer;
+}
+
+.disabledBtn { background: rgba(5, 71, 61, 0.25);}
+
+.customBtn:hover {
+	background: #097767;
+	color: black;
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+	border-radius: 4pt;
+    padding: 3.5pt;
+    border: 2pt solid #05473d !important;
+    font-family: Lato;
+    font-size: 2pt !important;
+    font-weight: normal;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -0.6em;
+    margin-left: -.6em;
+}
+
+.ui-widget-header {
+    background: #097767 !important;
+}
+
+.current {
+	border-radius: 4pt;
+    padding: 5pt;
+	border: 2pt solid #05473d;
+    background: #05473d;
+    font-family: Lato;
+    font-size: 8pt;
+    font-weight: normal;
+}
+
+.disabled { display: none;}
+
+#pagination a {
+	border-radius: 4pt;
+    padding: 5pt;
+	border: 2pt solid #05473d;
+    font-family: Lato;
+    font-size: 8pt;
+    font-weight: normal;
+	color: black;
+    text-decoration: none;
+}
+
+#pagination a:hover {background: #05473d;}
+
+.plaintext {
+	font-size: 12pt;
+    font-family: Lato;
+}
+
+.errorHeader {
+	color: #fd1754;
+    font-size: 15pt;
+}
+
+.errorText {
+	color: #fd1754;
+    font-size: 12pt;
+	list-style-type: none;
+}
+
+.goodsLink:link {
+	color: #05473d;
+    text-decoration: none;
+}
+
+.addLink:visited {
+	color: #05473d;
+}
+
+.addLink:hover {
+	color: #05473d;
+}
+
+.addLink:link {
+	color: black;
+    text-decoration: none;
+}
+
+.goodsLink:visited {
+	color: black;
+}
+
+.goodsLink:hover {
+	color: #05473d;
+}
+
+.customHeader {
+	font-size: 28pt;
+    font-family: Lato;
+	border-bottom: 2pt dotted #05473d;
+}
+
+.borderedDiv{
+	padding-left: 15pt;
+    padding-bottom: 15pt;
+    border-bottom: 2pt dotted #05473d;
+}
+
+.addSpaceBefore {
+	margin-top: 5pt;
+}
+
+.customTextBox {
+	border: 2pt solid rgb(9, 119, 103);
+    border-radius: 3pt;
+}
+
+th, td {
+   border-bottom: 2px solid #05473d; 
+}
+
+TABLE   { border-collapse: collapse }

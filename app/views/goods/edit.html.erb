@@ -1,0 +1,49 @@
+<h1 class="customHeader" align="center">Edit Product<h1>
+<%= form_for :good, url: good_path(@good), method: :patch do |f| %>
+	<div class="borderedDiv" align="center">
+	
+		<% if @good.errors.any? %>
+		<div id="error_explanation">
+		  <div align="center">
+			<div class="errorHeader">
+				<%= pluralize(@good.errors.count, "error") %> prohibited
+			this article from being saved:
+			</div>
+			<div>
+				<ul class="errorText">
+					<% @good.errors.full_messages.each do |msg| %>
+					<li>* <%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		  </div>
+		</div>
+	  <% end %>
+	
+	<div>
+		<%= f.label :name, class: 'plaintext'%><br>
+		<%= f.text_field :name, class: 'customBorder' %>
+	</div>
+	
+	<div>
+		<%= f.label :stock, class: 'plaintext' %><br>
+		<%= f.number_field :stock, min: 0, class: 'customBorder' %>
+	</div>
+	
+	<div>
+		<%= f.label :price, class: 'plaintext' %><br>
+		<%= f.number_field :price, min: 0, step: 0.01, class: 'customBorder' %>
+	</div>
+	
+	<div align="center" style="padding-top: 5pt; ">
+		<div style="display: inline;">
+			<%= f.submit class: 'customBtn' %>
+		</div>
+	
+		<div style="display: inline;">
+			<%= link_to "<button class='customBtn'>Back</button>".html_safe, goods_path, :id=>"backTo-catalog-btn" %>
+		</div>
+	</div>
+	</div>
+<% end %>
+

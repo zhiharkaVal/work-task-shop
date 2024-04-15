@@ -1,0 +1,38 @@
+<h1 class="customHeader" align="center">Shopping cart:<h1>
+
+<div class="borderedDiv plaintext" align="center">
+	<div>
+		<table class="plaintext">
+			<tr>
+				<th style="padding: 2pt 0pt 3pt 10pt;">Name of the product</th>
+				<th style="padding: 2pt 0pt 3pt 10pt;">Amount to be purchased</th>
+				<th style="padding: 2pt 0pt 3pt 10pt;"/>
+				<th style="padding: 2pt 0pt 3pt 10pt;"/>
+			</tr>
+		 
+			<% for item in @items %>
+				<tr>
+					<td style="padding: 2pt 0pt 3pt 10pt;"><%= item.good.name %></td>	
+					<%= form_for item, method: :patch do |f| %>
+					<td style="padding: 2pt 0pt 3pt 10pt;">
+						<%= f.number_field :amount, min: 0, class: 'customTextBox' %>
+					</td>
+					<td style="padding: 2pt 0pt 3pt 10pt;">
+						<%= f.submit class: 'search', method: :get %>
+					</td>
+					<% end %>
+					<td style="padding: 2pt 0pt 3pt 10pt;">
+						 <%= link_to "<button class='search'>Delete</button>".html_safe, item, method: :delete, data: { confirm: "Are you sure you wish to delete the product '#{item.good.name}' from your cart?" }%>
+					</td>
+				</tr>
+			<% end %>
+			<!-- If there are no products in the cart-->
+			<% if @items.size == 0 %>
+				<em class="plaintext"> No products in the shopping cart</em>
+			<% end %>
+		</table>
+</div>
+	<div style="padding-top: 15pt; display: inline;">
+		<%= link_to "<button class='customBtn addSpaceBefore'>Go back to catalog</button>".html_safe, goods_path, method: :get %>
+	</div>	
+</div>	
