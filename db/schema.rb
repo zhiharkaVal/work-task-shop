@@ -14,13 +14,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_13_104756) do
   create_table "carts", force: :cascade do |t|
     t.integer "product_id"
     t.integer "amount"
-    t.integer "good_id"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["good_id"], name: "index_carts_on_good_id"
+    t.index ["product_id"], name: "index_carts_on_product_id"
   end
 
-  create_table "goods", force: :cascade do |t|
+  create_table "items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "cart_id"
+    t.decimal "unit_price"
+    t.integer "amount"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.index ["cart_id"], name: "index_items_on_cart_id"
+    t.index ["product_id"], name: "index_items_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "stock"
     t.decimal "price"
@@ -28,14 +38,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_13_104756) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.integer "good_id"
-    t.integer "cart_id"
-    t.decimal "unit_price"
-    t.integer "amount"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["cart_id"], name: "index_items_on_cart_id"
-    t.index ["good_id"], name: "index_items_on_good_id"
-  end
+  add_foreign_key "carts", "products"
+  add_foreign_key "items", "carts"
+  add_foreign_key "items", "products"
 end

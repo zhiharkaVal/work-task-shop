@@ -3,9 +3,7 @@
 one:
   product_id: 1
   amount: 1
-  good: one
 
 two:
   product_id: 1
   amount: 1
-  good: two

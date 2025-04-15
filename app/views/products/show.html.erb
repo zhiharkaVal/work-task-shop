@@ -1,0 +1,28 @@
+<h1 class="customHeader" align="center"><%= @product.name %><h1>
+	<div class="borderedDiv plaintext" align="center">
+		<div>
+			<b>Price:</b>
+			<%= @product.price%>
+		</div>
+	
+		<div>
+			<b>Stock amount:</b>
+			<%= @product.stock%>
+		</div>
+	
+		<div style="padding-top: 15pt;">
+			<div style="padding-top: 15pt; display: inline;">
+				<%= link_to "<button class='customBtn'>Edit</button>".html_safe, edit_product_path, :id=>"edit-product-form-btn" %>
+			</div>
+			<div style="padding-top: 15pt; display: inline;">
+				<%= link_to "<button class='customBtn'>Delete</button>".html_safe, product_path(@product), method: :delete, data: {confirm: 'Are you sure?'}, :id=>"delete-product-form-btn" %>
+			</div>
+			<div style="padding-top: 15pt; display: inline;">
+				<%= link_to "<button class='customBtn'>Go back to the catalog</button>".html_safe, products_path, :id=>"open-catalog-btn" %>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	

@@ -10,15 +10,15 @@
 				<th style="padding: 2pt 0pt 3pt 10pt;"/>
 			</tr>
  
-			<% @goods.each do |good| %>
+			<% @products.each do |product| %>
 				<tr>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= link_to good.name, good_path(good), class: 'goodsLink' %></td>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= good.price %></td>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= good.stock %></td>
+					<td style="padding: 2pt 0pt 3pt 10pt;"><%= link_to product.name, product_path(product), class: 'productsLink' %></td>
+					<td style="padding: 2pt 0pt 3pt 10pt;"><%= product.price %></td>
+					<td style="padding: 2pt 0pt 3pt 10pt;"><%= product.stock %></td>
 					<td style="padding: 2pt 0pt 3pt 10pt;">Add to chart</td>
 				</tr>
 			<% end %>
-			<% if @goods.size == 0%>
+			<% if @products.size == 0%>
 				<em class="plaintext"> No products in the catalog</em>
 			<% end %>
 		</table>
@@ -26,17 +26,11 @@
 	<div id="pagination" style="padding-top: 15pt;">
 		<%= will_paginate(@users) %>
 	</div>
-	
+
 	<div style="padding-top: 15pt;">
-		<div style="padding-top: 15pt; display: inline;">
-			<%= link_to "<button class='customBtn'>Add new product</button>".html_safe, new_good_path, :id=>"open-new-product-form-btn" %>
-		</div>
-		<div style="padding-top: 15pt; display: inline;">
-			<%= link_to "<button class='customBtn'>Sort by name</button>".html_safe, goods_path(sorting_param: 'name'), method: :get, :id=>"sort-products-byname-btn" %>
-		</div>
-		<div style="padding-top: 15pt; display: inline;">
-				<%= link_to "<button class='customBtn'>Sort by price</button>".html_safe, goods_path(sorting_param: 'price'), method: :get, :id=>"sort-products-byprice-btn" %>
-		</div>
+		<div style="display: inline;">
+          <%= link_to "<button class='search addSpaceBefore'>Show all</button>".html_safe, products_path, method: :get, :id=>"show-all-productsbtn" %>
+        </div>
 	</div>
 	
 	<div style="padding-top: 15pt; width: 50%;">

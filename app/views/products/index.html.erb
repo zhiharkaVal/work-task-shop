@@ -1,12 +1,146 @@
-<h1 class="appCustomHeader" align="center">Welcome to our online shop!</h1>
-<div>
-	<div style="padding-top: 15%;" class="appPlaintext">We hope that you'll find everything you need in here.</div>
-	<div style="padding-top: 10%;">
-		<div style="display: inline;">
-			<%= link_to "<button class='customBtn'>Go to product catalog</button>".html_safe, goods_path, method: :get %>
+<!-- Hidden fields to store maximum and minimum prices in the catalog.
+Thus the price rage would automatically set up them as min and max -->
+<div style="display: none;" id="minPV"><%= min_products_price %></div>
+<div style="display: none;" id="maxPV"><%= max_products_price %></div>
+
+<!-- Creates price range slider and also sets values for min and max price query -->
+<script>
+	$(document).ready(function() {
+	var min = parseInt($("#minPV").text()),
+		max = parseInt($("#maxPV").text()) + 1;
+	var minQ = Math.floor((max - min) / 6),
+		maxQ = Math.round(max / 2);
+	var slider = $("#the_slider").slider({
+        range: true,
+        min: min,
+		max: max,
+        values: [min, max],
+        slide: function(event, ui) {
+            $("#data1").text(ui.values[0]).append("&euro;");
+            $("#min").val(ui.values[0]);
+            $("#data2").text(ui.values[1]).append("&euro;");
+			$("#max").val(ui.values[1]);
+	    }
+    });
+	var group = $("#group_slider").slider({
+        range: true,
+        min: min,
+		max: max,
+        values: [minQ, maxQ],
+        slide: function(event, ui) {
+            $("#data3").text(ui.values[0]).append("&euro;");
+            $("#gMin").val(ui.values[0]);
+            $("#data4").text(ui.values[1]).append("&euro;");
+			$("#gMax").val(ui.values[1]);
+	    }
+    });
+    $("#data1").text(slider.slider("values")[0]).append("&euro;");
+    $("#min").val(slider.slider("values")[0]);
+    $("#data2").text(slider.slider("values")[1]).append("&euro;");
+	$("#max").val(slider.slider("values")[1]);
+	$("#data3").text(group.slider("values")[0]).append("&euro;");
+    $("#gMin").val(group.slider("values")[0]);
+    $("#data4").text(group.slider("values")[1]).append("&euro;");
+	$("#gMax").val(group.slider("values")[1]);
+});
+</script>
+
+<h1 class="customHeader" align="center">Product catalog</h1>
+
+<div class="borderedDiv" align="center" style=""> 
+	<div style="display: inline-flex; width: 100%; margin-left: -20%;">
+		
+		<!-- Form for query and sorting of products -->
+		<div style="width: 40%;">
+			<%= form_tag(search_path, method: "get") do %>
+				<%= label_tag(:q, "Search for:", class: 'plaintext addSpaceBefore') %><br/>
+				<%= text_field_tag :starts_with, params[:starts_with], class:"addSpaceBefore customTextBox" %>
+				<div class="addSpaceBefore">
+				<%= hidden_field_tag :sorted_name, '', :search => params[:sorted_name] %>
+				<%= check_box_tag :sorted_name, 'true', false %>
+				<%= label_tag(:q, "Sort by name", class: 'plaintext') %>
+				</div>
+				<div class="addSpaceBefore">
+				<%= hidden_field_tag :sorted_price, '', :search => params[:sorted_price] %>
+				<%= check_box_tag :sorted_price, true, false%>
+				<%= label_tag(:q, "Sort by price", class: 'plaintext') %>
+				</div>
+				
+				<div style="padding-top: 15pt; padding-bottom: 10pt;">
+					<div style="display: inline; margin: 5pt">
+						<%= hidden_field_tag :price_min, "", :id =>'min', :search => params[:price_min]%>
+						<%= label_tag :price_min, "", class: 'plaintext', style: 'float:left; margin-left:21%;', id: 'data1'%>
+						<%= hidden_field_tag :price_max, "", :id =>'max', :search => params[:price_max]%>
+						<%= label_tag :price_max, "", class: 'plaintext', style:'float:right; margin-right:21%;', id: 'data2', :search => params[:price_max] %>
+					</div>
+					<div style="width: 55%;" id="the_slider"></div>
+				</div>
+				
+				<div style="display: inline;">
+					<%= submit_tag("Search", class: 'search addSpaceBefore' )%>
+				</div>
+				<div style="display: inline;">
+					<%= link_to "<button class='search addSpaceBefore'>Show all</button>".html_safe, products_path, method: :get, :id=>"show-all-productsbtn" %>
+				<% end %>
+				</div>
 		</div>
-		<div style="display: inline;">
-			<%= link_to "<button class='customBtn'>Go to shopping basket</button>".html_safe, cart_path(:current_cart), method: :get %>
+		
+		<!-- Shows all (queued) the products -->
+		<div style="width: 60%;">
+			<div>
+				<table class="plaintext">
+					<tr>
+						<th style="padding: 2pt 0pt 3pt 10pt;">Name of the product</th>
+						<th style="padding: 2pt 0pt 3pt 10pt;">Price</th>
+						<th style="padding: 2pt 0pt 3pt 10pt;">Amount in the stock</th>
+						<th style="padding: 2pt 0pt 3pt 10pt;">Amount to be purchased</th>
+						<th style="padding: 2pt 0pt 3pt 10pt;"/>
+					</tr>
+
+					<% @products.each do |product| %>
+						<tr>
+							<td style="padding: 2pt 0pt 3pt 10pt;">
+								<%= hidden_field_tag :product_id, product.id, :addToCart => params[:product_id]%>
+								<%= link_to product.name, product_path(product), class: 'productsLink'%>
+							</td>
+							<td style="padding: 2pt 0pt 3pt 10pt;"><%= product.price %></td>
+							<td align="center" style="padding: 2pt 0pt 3pt 10pt;" ><%= product.stock%></td>
+							
+							<%= form_for @item do |f| %>
+							<td align="center" style="padding: 2pt 0pt 3pt 10pt;">
+								<%= f.number_field :amount, value: 1, style: 'width: 45%;', class: 'addSpaceBefore customTextBox', min: 1 %>
+							</td>
+							<td style="padding: 2pt 0pt 3pt 10pt;">
+								<%= f.hidden_field :product_id, value: product.id %>
+								<% if product.stock >= 1 %>
+								<%= f.submit "Add to Cart", class: "search", :disabled => false %>
+								<% end %>
+								<% if product.stock < 1 %>
+								<%= f.submit "Add to Cart", class: "search disabledBtn", :disabled => true %>
+								<% end %>
+							</td>
+							<% end %>
+							<% end %>
+						</tr>
+					
+					<!-- If there are no products in the catalog or no product found, that respond to the query -->
+					<% if @products.size == 0%>
+						<em class="plaintext"> No products in the catalog</em>
+					<% end %>
+				</table>
+			</div>
+			<div id="pagination" style="padding-top: 15pt;">
+				<%= will_paginate(@products) %>
+			</div>
 		</div>
 	</div>
+	
+	<!-- Opens a form to add new product to the catalog -->
+	<div style="padding-top: 15pt;">
+		<div style="padding-top: 15pt;">
+			<%= link_to "<button class='customBtn'>Add new product</button>".html_safe, new_product_path, :id=>"open-new-product-form-btn" %>
+		</div>
+	</div>
+	</div>
+
 </div>

@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  good: one
-  cart: one
+  product_id: one
+  cart_id: one
   unit_price: 9.99
   amount: 1
 
 two:
-  good: two
-  cart: two
+  product_id: two
+  cart_id: two
   unit_price: 9.99
   amount: 1

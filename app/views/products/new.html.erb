@@ -1,16 +1,16 @@
 <h1 class="customHeader" align="center">New Product<h1>
-<%= form_for :good, url: goods_path do |f| %>
+<%= form_for :product, url: products_path do |f| %>
 
-	<% if @good.errors.any? %>
+	<% if @product.errors.any? %>
     <div id="error_explanation">
       <div align="center">
 		<div class="errorHeader">
-			<%= pluralize(@good.errors.count, "error") %> prohibited
+			<%= pluralize(@product.errors.count, "error") %> prohibited
         this article from being saved:
 		</div>
 		<div>
 			<ul class="errorText">
-				<% @good.errors.full_messages.each do |msg| %>
+				<% @product.errors.full_messages.each do |msg| %>
 				<li>* <%= msg %></li>
 				<% end %>
 			</ul>
@@ -41,7 +41,7 @@
 		</div>
 	
 		<div style="display: inline;">
-			<%= link_to "<button class='customBtn'>Back</button>".html_safe, goods_path, :id=>"backTo-catalog-btn" %>
+			<%= link_to "<button class='customBtn'>Back</button>".html_safe, products_path, :id=>"backTo-catalog-btn" %>
 		</div>
 	</div>
 	</div>

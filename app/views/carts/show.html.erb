@@ -12,7 +12,7 @@
 		 
 			<% for item in @items %>
 				<tr>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= item.good.name %></td>	
+					<td style="padding: 2pt 0pt 3pt 10pt;"><%= item.product.name %></td>
 					<%= form_for item, method: :patch do |f| %>
 					<td style="padding: 2pt 0pt 3pt 10pt;">
 						<%= f.number_field :amount, min: 0, class: 'customTextBox' %>
@@ -22,7 +22,7 @@
 					</td>
 					<% end %>
 					<td style="padding: 2pt 0pt 3pt 10pt;">
-						 <%= link_to "<button class='search'>Delete</button>".html_safe, item, method: :delete, data: { confirm: "Are you sure you wish to delete the product '#{item.good.name}' from your cart?" }%>
+						 <%= link_to "<button class='search'>Delete</button>".html_safe, item, method: :delete, data: { confirm: "Are you sure you wish to delete the product '#{item.product.name}' from your cart?" }%>
 					</td>
 				</tr>
 			<% end %>
@@ -33,6 +33,6 @@
 		</table>
 </div>
 	<div style="padding-top: 15pt; display: inline;">
-		<%= link_to "<button class='customBtn addSpaceBefore'>Go back to catalog</button>".html_safe, goods_path, method: :get %>
+		<%= link_to "<button class='customBtn addSpaceBefore'>Go back to catalog</button>".html_safe, products_path, method: :get %>
 	</div>	
 </div>	
