@@ -5,29 +5,32 @@
   src: url('assets/stylesheets/glyphicons-halflings-regular.eot');
   src: url('/assets/stylesheets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/stylesheets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/stylesheets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-.appCustomBtn {
-    border-radius: 2pt;
-    padding: 5pt;
-    background: #05473d;
-    font-family: Lato;
-    font-size: 12pt;
-    font-weight: normal;
+.custom-btn {
+  border: var(--bs-btn-border-width) solid #097767;
+  background-color: #05473d;
 }
 
-.appCustomBtn:hover {
-    background: #097767;
-    color: black;
+.custom-btn-disabled {
+  background: rgba(5, 71, 61, 0.25);
 }
 
-.appPlaintext {
-    font-size: 18pt;
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
+  background-color: #097767;
+}
+
+.custom-btn:focus-visible {
+  background-color: #097767;
+}
+
+.plaintext {
+	font-size: 14pt;
     font-family: Lato;
 }
 
-.appCustomHeader {
-    font-size: 28pt;
-    font-family: Lato;
-    border-bottom: 2pt dotted #05473d;
+.header {
+  font-size: 25pt;
+  font-family: Lato;
+  border-bottom: 2pt dotted #05473d;
 }
 
 .greenish-zigzag-bar {
@@ -48,9 +51,12 @@
   padding: 0 15pt;
 }
 
+.main-content-margin {
+  margin: 45pt 0;
+}
+
 .glyphicon {
     position: relative;
-    top: 3px;
     display: inline-block;
     font-family: 'Glyphicons Halflings';
     font-style: normal;
@@ -58,32 +64,17 @@
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    padding: 5pt 15pt;
 }
 
-#home a {
-    font-weight: normal;
-    color: black;
-    text-decoration: none;
+.footer {
+  text-align: center;
+  padding-top: 10pt;
+  position: fixed;
+  bottom: 0;
 }
 
-.home:before { 
-        content: "\e021" !important;
-        font-size: 18pt;
-        color: #ffffff;
-    }
-
-.home {
-    content: "\e021" !important;
-    cursor: pointer;
-}
-
-#home, #cart a {
-    font-weight: normal;
-    color: black;
-    text-decoration: none;
-}
-
-.cart:before { 
+.cart:before {
         content: "\e116" !important;
         font-size: 18pt;
         color: #ffffff;
@@ -92,4 +83,46 @@
 .cart {
     content: "\e116" !important;
     cursor: pointer;
+}
+
+.form-product {
+  padding: 15pt 70pt;
+}
+
+.form-group-margin {
+  margin-top: 10pt;
+}
+
+.form-group-lg-margin {
+  margin-top: 30pt;
+}
+
+.right-alignment {
+  text-align: right;
+}
+
+.table-header {
+  font-size: 18pt;
+  color: #05473d !important;
+}
+
+.custom-link:link {
+	color: #05473d;
+    text-decoration: none;
+}
+
+.custom-link:visited {
+	color: black;
+}
+
+.custom-link:hover {
+	color: #05473d;
+}
+
+.super-alignment {
+  vertical-align: super;
+}
+
+.top-alignment {
+  vertical-align: top;
 }

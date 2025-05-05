@@ -58,12 +58,12 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should sort products by price" do
-    get search_url, params: { sorted_price: "true" }
+    get search_url, params: { sorting_options: "price" }
     assert_response :success
   end
 
   test "should sort products by name" do
-    get search_url, params: { sorted_name: "true", name: "Fi" }
+    get search_url, params: { sorting_options: "name", name: "Fi" }
     assert_response :success
   end
 end

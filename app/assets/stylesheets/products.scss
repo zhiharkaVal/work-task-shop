@@ -1,22 +1,6 @@
-//Styles related to the Goods controller here.
-/*
-*= require_tree
-*= require jquery-ui
-*= require_self
-*/
-.customBorder {
-	border: 1.5pt solid #05473d;
-    border-radius: 3pt;
-}
-
-.customBtn {
-	border-radius: 4pt;
-    padding: 5pt;
-    background: #05473d;
-	font-family: Lato;
-	font-size: 12pt;
-	font-weight: normal;
-	color: white;
+.product {
+  padding: 15pt 5pt;
+  border: 1pt #05473d solid;
 }
 
 .search {
@@ -28,13 +12,6 @@
 	font-weight: normal;
 	color: white;
 	cursor: pointer;
-}
-
-.disabledBtn { background: rgba(5, 71, 61, 0.25);}
-
-.customBtn:hover {
-	background: #097767;
-	color: black;
 }
 
 
@@ -66,7 +43,6 @@
     font-weight: normal;
 }
 
-.disabled { display: none;}
 
 #pagination a {
 	border-radius: 4pt;
@@ -81,10 +57,7 @@
 
 #pagination a:hover {background: #05473d;}
 
-.plaintext {
-	font-size: 12pt;
-    font-family: Lato;
-}
+
 
 .errorHeader {
 	color: #fd1754;
@@ -97,10 +70,7 @@
 	list-style-type: none;
 }
 
-.productsLink:link {
-	color: #05473d;
-    text-decoration: none;
-}
+
 
 .addLink:visited {
 	color: #05473d;
@@ -115,24 +85,10 @@
     text-decoration: none;
 }
 
-.productsLink:visited {
-	color: black;
-}
-
-.productsLink:hover {
-	color: #05473d;
-}
-
 .customHeader {
 	font-size: 28pt;
     font-family: Lato;
 	border-bottom: 2pt dotted #05473d;
-}
-
-.borderedDiv{
-	padding-left: 15pt;
-    padding-bottom: 15pt;
-    border-bottom: 2pt dotted #05473d;
 }
 
 .addSpaceBefore {

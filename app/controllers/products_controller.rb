@@ -50,17 +50,17 @@ class ProductsController < ApplicationController
   # by name or by price.
   # User also could select product within particular price range.
   def search
-    min_price = params[:price_min].present? ? params[:price_min] : min_products_price
-    max_price = params[:price_max].present? ? params[:price_max] : max_products_price
-    sort_by = if (params[:sorted_name] == "true")
+    min_price = params.dig(:product, :price_min).present? ? params.dig(:product, :price_min) : min_products_price
+    max_price = params.dig(:product, :price_max).present? ? params.dig(:product, :price_max) : max_products_price
+    sort_by = if (params[:sorting_options] == "name")
                 "name ASC"
-              elsif (params[:sorted_price] == "true")
+              elsif (params[:sorting_options] == "price")
                 "price ASC"
               else
                 ""
               end
 
-    @products = Product.search_by(min_price, max_price, params[:name], sort_by)
+    @products = Product.search_by(min_price, max_price, params.dig(:product, :product_name), sort_by)
                   .paginate(page: params[:page], per_page: 10)
   end
 

@@ -12,4 +12,16 @@ class Product < ApplicationRecord
     search_result = Product.where('price > ? AND price < ? AND name like ?', min_price - 1, max_price + 1, "#{name}%")
     sort_by.present? ? search_result.order(sort_by) : search_result
   end
+
+  def update_stock(amount_to_be_purchased)
+    # TODO: add validation
+    stock =- amount_to_be_purchased
+    save!
+  end
+
+  def restock!(restock_amount)
+    # TODO: add validation
+    stock =+ restock_amount
+    save!
+  end
 end
