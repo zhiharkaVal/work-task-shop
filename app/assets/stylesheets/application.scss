@@ -5,6 +5,7 @@
   src: url('assets/stylesheets/glyphicons-halflings-regular.eot');
   src: url('/assets/stylesheets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/stylesheets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/stylesheets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
+
 .custom-btn {
   border: var(--bs-btn-border-width) solid #097767;
   background-color: #05473d;
@@ -14,11 +15,7 @@
   background: rgba(5, 71, 61, 0.25);
 }
 
-.custom-btn:hover, .custom-btn:focus, .custom-btn:active {
-  background-color: #097767;
-}
-
-.custom-btn:focus-visible {
+.custom-btn:hover, .custom-btn:focus, .custom-btn:active, .custom-btn:focus-visible {
   background-color: #097767;
 }
 
@@ -27,10 +24,22 @@
     font-family: Lato;
 }
 
+.errorHeader {
+  color: #fd1754;
+  font-size: 15pt;
+}
+
+.errorText {
+  color: #fd1754;
+  font-size: 12pt;
+  list-style-type: none;
+}
+
 .header {
   font-size: 25pt;
   font-family: Lato;
   border-bottom: 2pt dotted #05473d;
+  padding-bottom: 10pt;
 }
 
 .greenish-zigzag-bar {
@@ -38,33 +47,47 @@
   background-color: #05473d;
   color: white;
   background-image:
-    linear-gradient(30deg, #097767 25%, transparent 25%),
-    linear-gradient(-30deg, #097767 25%, transparent 25%),
-    linear-gradient(150deg, #097767 25%, transparent 25%),
-    linear-gradient(-150deg, #097767 25%, transparent 25%);
-    background-position: 10pt 0, 10pt 0, 0 0, 0 0;
+  linear-gradient(30deg, #097767 25%, transparent 25%),
+  linear-gradient(-30deg, #097767 25%, transparent 25%),
+  linear-gradient(150deg, #097767 25%, transparent 25%),
+  linear-gradient(-150deg, #097767 25%, transparent 25%);
+  background-position: 10pt 0, 10pt 0, 0 0, 0 0;
   background-size: 20pt 20pt;
   display: inline-flex;
 }
 
-.container-padding {
-  padding: 0 15pt;
-}
+.container-padding { padding: 0 15pt; }
+.main-content-margin { margin: 45pt 0; }
+.alert-margin { margin: 25pt; }
+.form-group-margin { margin-top: 10pt; }
+.form-group-lg-margin { margin-top: 30pt; }
+.form-product { padding: 15pt 70pt; }
+.products-table { margin: 25pt 0; }
 
-.main-content-margin {
-  margin: 45pt 0;
-}
+.right-alignment { text-align: right; }
+.top-alignment { vertical-align: top; }
 
 .glyphicon {
-    position: relative;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: 400;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: 5pt 15pt;
+  position: relative;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 5pt 15pt;
+}
+
+.cart:before {
+  content: "\e116" !important;
+  font-size: 18pt;
+  color: #ffffff;
+}
+
+.cart {
+  content: "\e116" !important;
+  cursor: pointer;
 }
 
 .footer {
@@ -74,31 +97,13 @@
   bottom: 0;
 }
 
-.cart:before {
-        content: "\e116" !important;
-        font-size: 18pt;
-        color: #ffffff;
-    }
-
-.cart {
-    content: "\e116" !important;
-    cursor: pointer;
-}
-
-.form-product {
-  padding: 15pt 70pt;
-}
-
-.form-group-margin {
-  margin-top: 10pt;
-}
-
-.form-group-lg-margin {
-  margin-top: 30pt;
-}
-
-.right-alignment {
+.cart-sum {
+  font-size: 20pt;
+  font-family: Lato;
+  border-top: 2pt dotted #05473d;
+  padding-top: 10pt;
   text-align: right;
+  padding-right: 30pt;
 }
 
 .table-header {
@@ -107,22 +112,56 @@
 }
 
 .custom-link:link {
-	color: #05473d;
-    text-decoration: none;
+  color: #05473d;
+  text-decoration: none;
 }
 
-.custom-link:visited {
-	color: black;
+.custom-link:visited { color: black; }
+.custom-link:hover { color: #05473d; }
+
+.custom-pagination {
+  text-align: center;
+  padding: 3em 1em;
+  cursor: default;
+  font-size: 15pt;
+  justify-content: center;
 }
 
-.custom-link:hover {
-	color: #05473d;
+.custom-pagination a, .custom-pagination span, .custom-pagination em {
+  padding: 5pt;
 }
 
-.super-alignment {
-  vertical-align: super;
+.custom-pagination .disabled {
+  border: 2px solid #aaaaaa;
+  color: #aaaaaa;
 }
 
-.top-alignment {
-  vertical-align: top;
+.custom-pagination .current {
+  border: 2px solid #05473d;
+  color: #fff;
+  background-color: #05473d;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.custom-pagination a {
+  color: #05473d;
+  border: 2pt solid #05473d;
+  text-decoration: none;
+}
+
+.custom-pagination a:hover, .custom-pagination a:focus {
+  border-color: #05473d;
+  background: #097767;
+  color: white;
+}
+
+.custom-pagination .next_page {
+  border-top-right-radius: 5pt;
+  border-bottom-right-radius: 5pt;
+}
+
+.custom-pagination .previous_page {
+  border-top-left-radius: 5pt;
+  border-bottom-left-radius: 5pt;
 }
