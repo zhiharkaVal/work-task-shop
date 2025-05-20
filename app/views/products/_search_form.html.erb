@@ -1,0 +1,23 @@
+<%= form_for :product, url: search_path, method: "get" do |f| %>
+  <div class="row">
+    <div class="col-2">
+      <%= f.text_field :product_name, class: 'form-control', placeholder: 'Search for...' %>
+    </div>
+    <div class="col-4">
+      <div class="input-group">
+        <%= f.text_field :price_min, class: 'form-control', placeholder: "Min price: #{min_products_price}" %>
+        <span class="input-group-text"> - </span>
+        <%= f.text_field :price_max, class: 'form-control', placeholder: "Max price: #{max_products_price}" %>
+      </div>
+    </div>
+    <div class="col-3">
+      <%= select_tag "sorting_options", options_for_select([['Sort by name', 'name'], ['Sort by price', 'price'], ['None', '']], "Sort by name"), class: 'form-select' %>
+    </div>
+    <div class="col-1">
+      <%= submit_tag("Search", class: 'btn btn-primary custom-btn top-alignment' )%>
+    </div>
+    <div class="col-2">
+      <%= link_to "<button class='btn btn-primary custom-btn top-alignment'>Show all</button>".html_safe, products_path, method: :get, :id=>"show-all-productsbtn" %>
+    </div>
+  </div>
+<% end %>

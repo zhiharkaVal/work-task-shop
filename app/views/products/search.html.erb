@@ -1,42 +1,53 @@
-<h1 class="customHeader" align="center">Product catalog</h1>
+<div style="display: none;" id="minPV"><%= min_products_price %></div>
+<div style="display: none;" id="maxPV"><%= max_products_price %></div>
 
-<div class="borderedDiv" align="center"> 
-	<div> 
-		<table class="plaintext">
-			<tr>
-				<th style="padding: 2pt 0pt 3pt 10pt;">Name of the product</th>
-				<th style="padding: 2pt 0pt 3pt 10pt;">Price</th>
-				<th style="padding: 2pt 0pt 3pt 10pt;">Amount in the stock</th>
-				<th style="padding: 2pt 0pt 3pt 10pt;"/>
-			</tr>
- 
-			<% @products.each do |product| %>
-				<tr>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= link_to product.name, product_path(product), class: 'productsLink' %></td>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= product.price %></td>
-					<td style="padding: 2pt 0pt 3pt 10pt;"><%= product.stock %></td>
-					<td style="padding: 2pt 0pt 3pt 10pt;">Add to chart</td>
-				</tr>
-			<% end %>
-			<% if @products.size == 0%>
-				<em class="plaintext"> No products in the catalog</em>
-			<% end %>
-		</table>
-	</div>
-	<div id="pagination" style="padding-top: 15pt;">
-		<%= will_paginate(@users) %>
-	</div>
-
-	<div style="padding-top: 15pt;">
-		<div style="display: inline;">
-          <%= link_to "<button class='search addSpaceBefore'>Show all</button>".html_safe, products_path, method: :get, :id=>"show-all-productsbtn" %>
-        </div>
-	</div>
-	
-	<div style="padding-top: 15pt; width: 50%;">
-		<div class="plaintext" style="display: inline;" id="data1"></div>
-		<div class="plaintext" style="display: inline;" id="data2"></div>
-		<div id="the_slider"></div>
-	</div>
-
+<div align="center">
+  <h1 class="header" align="center">Products<h1>
+  <div class="row text-center form-group-lg-margin">
+    <%= render "search_form" %>
+  </div>
+  <%= render "home/flash" %>
+  <% if @products.size == 0 %>
+    <em class="plaintext"> No products in the catalog</em>
+  <% else %>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col" class="text-center table-header">Product</th>
+          <th scope="col" class="text-center table-header">Price</th>
+          <th scope="col" class="text-center table-header">Stock</th>
+          <th scope="col" class="text-center table-header">Purchase amount</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <th scope="row" class="plaintext align-middle text-center">
+              <%= link_to product.name, product_path(product), class: 'custom-link'%>
+            </th>
+            <td class="plaintext align-middle text-center"><%= product.price %></td>
+            <td class="plaintext align-middle text-center"><%= product.stock%></td>
+            <%= form_for :item, url: add_to_cart_path, method: "post" do |f| %>
+              <td class="align-bottom">
+                <%= f.number_field :amount, value: 1, class: 'form-control col-sm', min: 1 %>
+              </td>
+              <td class="align-bottom">
+                <%= f.hidden_field :product_id, value: product.id %>
+                <% if product.stock >= 1 %>
+                  <%= f.submit "Add to Cart", class: "btn btn-primary custom-btn", :disabled => false %>
+                <% end %>
+                <% if product.stock < 1 %>
+                  <%= f.submit "Add to Cart", class: "btn btn-primary custom-btn custom-btn-disabled", :disabled => true %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="pagination custom-pagination">
+      <%= will_paginate @products, :container => false %>
+    </div>
+  <% end %>
 </div>

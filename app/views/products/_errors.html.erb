@@ -1,0 +1,26 @@
+<% if @product.errors.any? %>
+  <div id="error_explanation">
+    <div align="center">
+      <div class="errorHeader">
+        Product could not be saved due to <%= pluralize(@product.errors.count, "error") %>
+      </div>
+    <div>
+      <ul class="errorText">
+        <% @product.errors.full_messages.each do |msg| %>
+          <li>* <%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+<% if @products.errors.any? %>
+  <div id="error_explanation">
+    <div align="center">
+      <ul class="errorText">
+        <% @products.errors.full_messages.each do |msg| %>
+          <li>* <%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

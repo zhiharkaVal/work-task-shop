@@ -1,8 +1,7 @@
 class ProductsController < ApplicationController
   include ProductHelper
   def index
-    @products = Product.paginate(page: params[:page], per_page: 10)
-    @item = current_cart.items.new
+    @products = Product.paginate(page: params[:page], per_page: 5)
   end
 
   def new
@@ -27,7 +26,6 @@ class ProductsController < ApplicationController
     end
   end
 
-  # If any changes have been made in the edit form of the product, they will be saved to the database
   def update
     @product = Product.find(params[:id])
 
@@ -61,7 +59,7 @@ class ProductsController < ApplicationController
               end
 
     @products = Product.search_by(min_price, max_price, params.dig(:product, :product_name), sort_by)
-                  .paginate(page: params[:page], per_page: 10)
+                  .paginate(page: params[:page], per_page: 5)
   end
 
   private

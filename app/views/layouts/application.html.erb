@@ -13,32 +13,14 @@
   </head>
   
   <body style="overflow-x: none; overflow-y: scroll;">
-	<!-- Navigation Header -->
-	<nav class="navbar navbar-expand-lg navbar-dark greenish-zigzag-bar">
-      <div class="container-fluid">
-        <%= link_to '', cart_path(:current_cart), class: 'nav-link cart glyphicon', :id=>"open-catalog-btn", method: :get %>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <%= link_to 'Home', root_path, class: 'nav-link active', :id=>"open-catalog-btn" %>
-            <%= link_to 'Products', products_path, class: 'nav-link', :id=>"open-catalog-btn", method: :get %>
-            <%= link_to 'Add new product', new_product_path, class: 'nav-link me-3', :id=>"open-new-product-form-btn", method: :get %>
-          </div>
-        </div>
-      </div>
-    </nav>
+	<%= render 'home/header' %>
 
 	<div class="container-fluid container-padding">
 	  <div class="main-content-margin">
 	    <%= yield %>
 	  </div>
 	</div>
-	<!-- Footer -->
-	  <div class="row gx-0 greenish-zigzag-bar container-padding footer">
-	    <p>2017 - <%= Date.today.year %></p>
-	  </div>
-	</div>
+
+	<%= render 'home/footer' %>
   </body>
 </html>
