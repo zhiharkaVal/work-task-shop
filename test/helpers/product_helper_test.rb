@@ -12,26 +12,27 @@ class ProductHelperTest < ActionView::TestCase
   end
 
   test "should return default min price if there is no products" do
-    Product.stub :minimum, nil do
-      assert_equal Product::DEFAULT_MIN_PRODUCT_PRICE, min_products_price
-    end
+    Product.stubs(:minimum).returns(nil)
+    assert_equal Product::DEFAULT_MIN_PRODUCT_PRICE, min_products_price
   end
 
   test "should return default max price if there is no products" do
-    Product.stub :maximum, nil do
-      assert_equal Product::DEFAULT_MAX_PRODUCT_PRICE, max_products_price
-    end
+    Product.stubs(:maximum).returns(nil)
+    assert_equal Product::DEFAULT_MAX_PRODUCT_PRICE, max_products_price
   end
 
   test "should return rounded min price if price has decimals" do
-    Product.stub :minimum, 2.25 do
-      assert_equal 2, min_products_price
-    end
+    Product.stubs(:minimum).returns(2.25)
+    assert_equal 2, min_products_price
+  end
+
+  test "should return zero for min price if price is between zero and one" do
+    Product.stubs(:minimum).returns(0.85)
+    assert_equal 0, min_products_price
   end
 
   test "should return rounded max price if price has decimals" do
-    Product.stub :maximum, 42.99 do
-      assert_equal 43, max_products_price
-    end
+    Product.stubs(:maximum).returns(42.37)
+    assert_equal 43, max_products_price
   end
 end

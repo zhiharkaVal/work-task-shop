@@ -66,4 +66,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get search_url, params: { sorting_options: "name", name: "Fi" }
     assert_response :success
   end
+
+  test "should show error message if products search failed for some reason" do
+    expected_error_message = "Could not perform search: ooops, something went wrong."
+    Product.stubs(:search_by).raises(StandardError, "ooops, something went wrong")
+    get search_url, params: { sorting_options: "name", name: "Fi" }
+    assert_equal(expected_error_message, flash[:error])
+  end
 end

@@ -48,6 +48,7 @@ class ProductsController < ApplicationController
   # by name or by price.
   # User also could select product within particular price range.
   def search
+    @products = []
     min_price = params.dig(:product, :price_min).present? ? params.dig(:product, :price_min) : min_products_price
     max_price = params.dig(:product, :price_max).present? ? params.dig(:product, :price_max) : max_products_price
     sort_by = if (params[:sorting_options] == "name")
@@ -60,6 +61,9 @@ class ProductsController < ApplicationController
 
     @products = Product.search_by(min_price, max_price, params.dig(:product, :product_name), sort_by)
                   .paginate(page: params[:page], per_page: 5)
+  rescue StandardError => e
+    flash[:error] = "Could not perform search: #{e.message}."
+    render 'search'
   end
 
   private

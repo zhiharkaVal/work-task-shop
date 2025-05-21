@@ -1,7 +1,7 @@
 module ProductHelper
   def min_products_price
     if Product.count > 0 && Product.minimum(:price).present?
-      Product.minimum(:price).round
+      Product.minimum(:price).floor
     else
       Product::DEFAULT_MIN_PRODUCT_PRICE
     end
@@ -9,7 +9,7 @@ module ProductHelper
 
   def max_products_price
     if Product.count > 0 && Product.maximum(:price).present?
-      Product.maximum(:price).round
+      Product.maximum(:price).ceil
     else
       Product::DEFAULT_MAX_PRODUCT_PRICE
     end

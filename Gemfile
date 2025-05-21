@@ -34,6 +34,8 @@ end
 
 group :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
+  gem 'mocha', '~> 1.2', '>= 1.2.1'
+  gem 'shoulda', '~> 3.5'
   gem 'minitest-reporters', '~> 1.7', '>= 1.7.1'
 end
 

@@ -1,4 +1,4 @@
-<% if @product.errors.any? %>
+<% if @product.present? && @product.errors.any? %>
   <div id="error_explanation">
     <div align="center">
       <div class="errorHeader">
@@ -13,7 +13,7 @@
     </div>
   </div>
 <% end %>
-<% if @products.errors.any? %>
+<% if @products.present? && @products.errors.any? %>
   <div id="error_explanation">
     <div align="center">
       <ul class="errorText">
