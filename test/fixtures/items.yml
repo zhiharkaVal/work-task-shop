@@ -3,11 +3,9 @@
 one:
   product_id: one
   cart_id: one
-  unit_price: 9.99
   amount: 1
 
 two:
   product_id: two
   cart_id: two
-  unit_price: 9.99
   amount: 1
