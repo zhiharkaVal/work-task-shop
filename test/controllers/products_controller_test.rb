@@ -7,7 +7,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show specific existing product" do
-    product = products(:one)
+    product = products(:product_one)
 
     get product_url(product)
     assert_response :success
@@ -30,7 +30,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update existing product" do
-    product = products(:one)
+    product = products(:product_one)
     get edit_product_url(product)
     assert_response :success
 
@@ -41,7 +41,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test "should not update existing product, if it does not pass validation" do
     expected_error_messages = ["Price must be greater than 0", "Stock must be greater than or equal to 0"]
-    product = products(:one)
+    product = products(:product_one)
     get edit_product_url(product)
     assert_response :success
 

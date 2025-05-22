@@ -12,17 +12,13 @@
 
 ActiveRecord::Schema[8.0].define(version: 2025_04_13_104756) do
   create_table "carts", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "amount"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.index ["product_id"], name: "index_carts_on_product_id"
   end
 
   create_table "items", force: :cascade do |t|
-    t.integer "product_id"
     t.integer "cart_id"
-    t.decimal "unit_price"
+    t.integer "product_id"
     t.integer "amount"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
@@ -37,8 +33,4 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_13_104756) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
   end
-
-  add_foreign_key "carts", "products"
-  add_foreign_key "items", "carts"
-  add_foreign_key "items", "products"
 end

@@ -1,21 +1,21 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
+product_one:
+  id: 42
   name: First Goodie
-  stock: 42
   price: 92
+  stock: 42
 
-two:
+product_two:
+  id: 56
   name: Second Goodie
-  stock: 24
   price: 42
+  stock: 24
 
 minimum:
   name: Lowest Price Goodie
-  stock: 42
   price: 2
+  stock: 42
 
 maximum:
   name: Highest Price Goodie
-  stock: 24
   price: 999
+  stock: 24

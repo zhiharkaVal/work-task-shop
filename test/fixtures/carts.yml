@@ -1,9 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  product_id: 1
-  amount: 1
+  id: 24
 
 two:
-  product_id: 1
-  amount: 1
+  id: 65

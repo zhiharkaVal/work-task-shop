@@ -94,7 +94,7 @@ class ProductTest < ActiveSupport::TestCase
     should "return all products within min and max range unsorted" do
       search_result = Product.search_by(Product::DEFAULT_MIN_PRODUCT_PRICE, Product::DEFAULT_MAX_PRODUCT_PRICE, '', '')
       assert_equal(4, search_result.count)
-      assert_equal("Second Goodie|Lowest Price Goodie|Highest Price Goodie|First Goodie", search_result.map(&:name).join('|'))
+      assert_equal("First Goodie|Second Goodie|Lowest Price Goodie|Highest Price Goodie", search_result.map(&:name).join('|'))
     end
 
     should "return sorted by price products within given min and max range" do

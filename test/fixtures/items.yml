@@ -1,11 +1,13 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  product_id: one
-  cart_id: one
+first_goodie_item:
+  product_id: 42
+  cart_id: 24
   amount: 1
 
-two:
-  product_id: two
-  cart_id: two
-  amount: 1
+second_goodie_item:
+  product_id: 56
+  cart_id: 65
+  amount: 2
+
+cartless_item:
+  product_id: 56
+  amount: 25

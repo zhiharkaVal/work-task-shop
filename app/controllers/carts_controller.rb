@@ -1,7 +1,5 @@
 class CartsController < ApplicationController
-	
-	#Shows the current cart, where current cart equals session id
-	def show
-		@items = current_cart.items
-	end
+  def show
+    @items = (@cart.present? && @cart.items.present?) ? @cart.items : []
+  end
 end
