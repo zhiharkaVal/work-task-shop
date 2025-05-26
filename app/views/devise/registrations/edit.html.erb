@@ -1,0 +1,43 @@
+<h1 class="header" align="center">Edit <%= resource_name.to_s.humanize %><h1>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="user-form-margin">
+    <div class="field">
+      <%= f.label :email, class: 'plaintext' %>
+      <%= f.email_field :email, class: 'form-control custom-border', autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="plaintext">Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, class: 'plaintext' %><i class="plaintext"> (leave blank if you don't want to change it)</i>
+      <%= f.password_field :password, class: 'form-control custom-border', autocomplete: "new-password" %>
+      <% if @minimum_password_length %>
+        <em class="plaintext"><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'plaintext' %>
+      <%= f.password_field :password_confirmation, class: 'form-control custom-border', autocomplete: "new-password" %>
+    </div>
+    <div class="field">
+      <%= f.label :current_password, class: 'plaintext' %><i class="plaintext"> (we need your current password to confirm your changes)</i>
+      <%= f.password_field :current_password,  class: 'form-control custom-border', autocomplete: "current-password" %>
+    </div>
+  </div>
+
+  <div class="text-center form-group-lg-margin">
+    <div class="btn-group">
+      <%= f.submit "Update", class: 'btn btn-primary custom-btn me-2' %>
+      <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, class: 'btn btn-primary custom-btn me-2', method: :delete %>
+      <%= link_to "Back", :back, class: 'btn btn-primary custom-btn me-2' %>
+    </div>
+  </div>
+<% end %>
+
+
+

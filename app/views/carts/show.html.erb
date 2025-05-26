@@ -4,7 +4,6 @@
 <div align="center">
   <h1 class="header" align="center">Your cart<h1>
   <%= render "errors" %>
-  <%= render "home/flash" %>
   <% if @items.size == 0%>
     <em class="plaintext"> No items in the cart</em>
   <% else %>
@@ -27,15 +26,14 @@
             <td class="plaintext align-middle text-center"><%= item.product.price %></td>
             <%= form_for :item, url: update_cart_item_path, method: "post" do |f| %>
               <td class="align-bottom">
-                <%= f.number_field :amount, value: item.amount, class: 'form-control col-sm', min: 1 %>
+                <%= f.number_field :amount, value: item.amount, class: 'form-control col-sm custom-border', min: 1 %>
               </td>
               <td class="align-bottom text-center">
                 <%= f.hidden_field :item_id, value: item.id %>
                 <% if item.product.stock >= 1 %>
                   <%= f.submit "Update", class: "btn btn-primary custom-btn", :disabled => false %>
-                <% end %>
-                <% if item.product.stock < 1 %>
-                  <%= f.submit "Update", class: "btn btn-primary custom-btn custom-btn-disabled", :disabled => true %>
+                <% else %>
+                  <%= f.submit "Update", class: "btn btn-primary custom-btn", :disabled => true %>
                 <% end %>
               </td>
             <% end %>

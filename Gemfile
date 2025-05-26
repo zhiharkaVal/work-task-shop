@@ -18,8 +18,7 @@ gem 'jquery-rails', '~> 4.6'
 gem 'jquery-ui-rails', '~> 7.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'devise', '~> 4.9', '>= 4.9.4'
 
 group :development, :test do
   gem 'pry-byebug', '~> 3.4'

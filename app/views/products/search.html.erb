@@ -6,7 +6,6 @@
   <div class="row text-center form-group-lg-margin">
     <%= render "search_form" %>
   </div>
-  <%= render "home/flash" %>
   <% if @products.size == 0 %>
     <em class="plaintext"> No products in the catalog</em>
   <% else %>
@@ -30,7 +29,7 @@
             <td class="plaintext align-middle text-center"><%= product.stock%></td>
             <%= form_for :item, url: add_to_cart_path, method: "post" do |f| %>
               <td class="align-bottom">
-                <%= f.number_field :amount, value: 1, class: 'form-control col-sm', min: 1 %>
+                <%= f.number_field :amount, value: 1, class: 'form-control col-sm custom-border', min: 1 %>
               </td>
               <td class="align-bottom">
                 <%= f.hidden_field :product_id, value: product.id %>

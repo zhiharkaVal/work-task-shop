@@ -6,7 +6,6 @@
   <div class="row text-center form-group-lg-margin">
     <%= render "search_form" %>
   </div>
-  <%= render "home/flash" %>
   <% if @products.size == 0 %>
     <em class="plaintext"> No products in the catalog</em>
   <% else %>
@@ -30,15 +29,14 @@
             <td class="plaintext align-middle text-center"><%= product.stock%></td>
             <%= form_for :item, url: add_to_cart_path, method: "post" do |f| %>
               <td class="align-bottom">
-                <%= f.number_field :amount, value: 1, class: 'form-control col-sm', min: 1 %>
+                <%= f.number_field :amount, value: 1, class: 'form-control col-sm custom-border', min: 1 %>
               </td>
               <td class="align-bottom">
                 <%= f.hidden_field :product_id, value: product.id %>
-                <% if product.stock >= 1 %>
+                <% if user_signed_in? && product.stock >= 1 %>
                   <%= f.submit "Add to Cart", class: "btn btn-primary custom-btn", :disabled => false %>
-                <% end %>
-                <% if product.stock < 1 %>
-                  <%= f.submit "Add to Cart", class: "btn btn-primary custom-btn custom-btn-disabled", :disabled => true %>
+                <% else %>
+                  <%= f.submit "Add to Cart", class: "btn btn-primary custom-btn", :disabled => true %>
                 <% end %>
               </td>
             <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get '/search' => "products#search"
   get '/current_cart' => "carts#show", :as => 'current_cart'
   post '/order' => "carts#order"

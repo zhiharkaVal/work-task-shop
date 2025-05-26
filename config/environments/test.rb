@@ -52,4 +52,6 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.active_support.to_time_preserves_timezone = :zone
+
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

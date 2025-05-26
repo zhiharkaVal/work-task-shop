@@ -7,16 +7,24 @@
 }
 
 .custom-btn {
-  border: var(--bs-btn-border-width) solid #097767;
+  border: 1pt solid #097767;
   background-color: #05473d;
+  border-radius: 5pt !important;
 }
 
-.custom-btn-disabled {
+.custom-btn:disabled {
   background: rgba(5, 71, 61, 0.25);
+  border: 1pt solid #097767;
+  cursor: not-allowed;
 }
 
 .custom-btn:hover, .custom-btn:focus, .custom-btn:active, .custom-btn:focus-visible {
   background-color: #097767;
+}
+
+.custom-border:focus {
+  border-color: #05473d;
+  box-shadow: 0 0 0 0.25rem rgba(5, 71, 61, 0.25);
 }
 
 .plaintext {
@@ -64,6 +72,7 @@
 .form-group-lg-margin { margin-top: 30pt; }
 .form-product { padding: 15pt 70pt; }
 .products-table { margin: 25pt 0; }
+.user-form-margin { margin: 0 35%; }
 
 .right-alignment { text-align: right; }
 .top-alignment { vertical-align: top; }
